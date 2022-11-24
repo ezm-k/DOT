@@ -1,0 +1,79 @@
+@use '../global/variables'as var;
+@use '../global/mixin'as mix;
+
+html {
+    font-size: 100%;
+
+    @include mix.mq('lg'){
+        font-size: 87.5%;
+    }
+
+    @include mix.mq('md'){
+        font-size: 100%;
+    }
+}
+
+
+body {
+    color: var.$color_main;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: var.$fontSize_main;
+    line-height: var.$lineHeight;
+
+    @include mix.mq('xs'){
+        font-size: var.$fontSize_sp;
+    }
+}
+
+a {
+    color: var.$color_main;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: bottom;
+}
+
+li {
+    list-style: none;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+    padding: 0 143px;
+
+    @include mix.mq('lg') {
+        padding: 0 56px;
+    }
+
+    @include mix.mq('md') {
+        padding: 0 56px;
+    }
+
+    @include mix.mq('xs'){
+        padding: 0 18px;
+    }
+}
+
+.section-title-text {
+    font-size: var.$fontSize_h2;
+    font-weight: bold;
+    text-align: center;
+
+    @include mix.mq('xs'){
+        font-size: var.$fontSize_sp_h2;
+    }
+}
+
+.sub-title {
+    margin-bottom: 16px;
+    font-size: var.$fontSize_h3;
+    font-weight: bold;
+
+    @include mix.mq('xs'){
+        font-size: var.$fontSize_sp_h3;
+    }
+}

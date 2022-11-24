@@ -1,0 +1,208 @@
+@use '../global/variables'as var;
+@use '../global/mixin'as mix;
+
+#mainvisual {
+    position: relative;
+    width: 100%;
+    margin-bottom: 210px; //波型SVGの分を余白に設定。
+    background: var.$bgColor_lightBlue;
+
+    @include mix.mq('xl') {
+        margin-bottom: 180px;
+    }
+
+    @include mix.mq('lg') {
+        margin-bottom: 115px;
+    }
+
+    @include mix.mq('md') {
+        height: 100vh;
+        margin-bottom: 85px;
+    }
+
+    @include mix.mq('xs') {
+        height: auto;
+        margin-bottom: 55px;
+        padding: 41.1px 0 23.9px;
+    }
+
+    .inner {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding-top: 64px;
+
+        @include mix.mq('md') {
+            flex-direction: column-reverse;
+        }
+
+        @include mix.mq('xs') {
+            padding-top: 0;
+        }
+
+        .mainvisual-text {
+            width: 50%;
+
+            @include mix.mq('lg') {
+                width: 60%;
+            }
+
+            @include mix.mq('md') {
+                width: 100%;
+            }
+
+            &-catchphrase {
+                margin-bottom: 24px;
+                font-size: var.$fontSize_catch;
+                font-weight: bold;
+
+                @include mix.mq('md') {
+                    br {
+                        display: none;
+                    }
+
+                    font-size: var.$fontSize_md_catch;
+                }
+
+                @include mix.mq('xs') {
+                    margin-bottom: 16px;
+                    font-size: var.$fontSize_sp_catch;
+                    line-height: 1.5;
+                }
+            }
+
+            &-point {
+                margin-bottom: 32px;
+                font-weight: bold;
+
+                @include mix.mq('xs') {
+                    margin-bottom: 24px;
+                }
+
+                li {
+                    position: relative;
+                    padding-left: 1em; //チェックの分の余白
+                    margin-bottom: 6px;
+
+                    @include mix.mq('md') {
+                        margin-bottom: 8px;
+                    }
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    &::before {
+                        @include mix.checke (12px, 8px, 3px, #5E81AC)
+                    }
+
+                }
+
+            }
+
+            .btn {
+                position: relative;
+                @include mix.btn(180px, 52px);
+                transition: all .5s;
+
+                @include mix.mq('xs') {
+                    @include mix.btn(180px, 48px);
+                }
+
+                &:hover {
+                    background: #2E3440;
+                }
+
+                //矢印横向き直線
+                &::before {
+                    @include mix.arrow-before(14px, 2px, #ECEFF4)
+                }
+
+                //矢印カッコ
+                &::after {
+                    @include mix.arrow-after(10px, 10px, 2px, #ECEFF4)
+                }
+
+                a {
+                    @include mix.btn-a(18px);
+                    line-height: 52px;
+
+                    @include mix.mq('xs') {
+                        @include mix.btn-a(16px);
+                        line-height: 48px;
+                    }
+                }
+
+            }
+        }
+
+        .mainvisual-image {
+            width: 50%;
+
+            @include mix.mq('lg') {
+                width: 40%;
+            }
+
+            @include mix.mq('md') {
+                width: 100%;
+                margin-bottom: 48px;
+                padding: 0 30%;
+            }
+
+            @include mix.mq('xs') {
+                margin-bottom: 32px;
+                padding: 0 15.1%;
+            }
+        }
+
+        /*=======================================
+        アニメーションのための設定
+        =========================================*/
+        //初期状態は非表示
+        &.animeElem {
+            opacity: 0;
+        }
+
+        //ふわっと表示させるアニメーション設定
+        &.fadeUp {
+            animation: fadeUpAnime forwards ease-out 1s 1 0s;
+        }
+
+        @keyframes fadeUpAnime {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+
+    /*=======================================
+    波型セクション区切りの設定
+    =========================================*/
+    #wave-bg-mainvisual {
+        @include mix.wave-bg(210px, -210px);
+
+        @include mix.mq('xl') {
+            @include mix.wave-bg(180px, -180px)
+        }
+
+        @include mix.mq('lg') {
+            @include mix.wave-bg(115px, -115px)
+        }
+
+        @include mix.mq('md') {
+            @include mix.wave-bg(85px, -85px)
+        }
+
+        @include mix.mq('xs') {
+            @include mix.wave-bg(55px, -55px)
+        }
+    }
+}

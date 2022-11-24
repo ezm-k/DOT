@@ -1,0 +1,59 @@
+@use '../global/variables'as var;
+@use '../global/mixin'as mix;
+
+#footer {
+    padding: 90px 0 30px;
+
+    @include mix.mq('md') {
+        padding: 32px 0 16px;
+    }
+
+    @include mix.mq('xs') {
+        padding: 40px 0 24px;
+    }
+
+    .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var.$fontSize_footer;
+        opacity: .7; //文字を不透明度70%にする
+
+        @include mix.mq('md') {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &-nav-list {
+            display: flex;
+
+            @include mix.mq('md') {
+                margin-bottom: 16px;
+            }
+
+            @include mix.mq('xs') {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 24px;
+
+                li {
+                    margin-bottom: 8px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            //　リストのスラッシュ区切り
+            li:not(:last-of-type)::after {
+                content: "/";
+                margin: 0 0.6em;
+
+                @include mix.mq('xs') {
+                    display: none;
+                }
+            }
+        }
+    }
+}

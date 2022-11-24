@@ -1,0 +1,100 @@
+@use 'variables'as var;
+
+// ====================================
+// サイトロゴ
+// ====================================
+@mixin site-title($width) {
+    width: $width;
+    line-height: 0;
+}
+
+@mixin site-title-a {
+    display: block;
+}
+
+// ====================================
+// チェックマーク
+// ====================================
+@mixin checke($width, $height, $line-width, $line-color) {
+    content: '';
+    position: absolute;
+    top: 36%;
+    left: 0;
+    width: $width;
+    height: $height;
+    border-left: $line-width solid $line-color;
+    border-bottom: $line-width solid $line-color;
+    transform: rotate(-45deg);
+}
+
+// ====================================
+// ボタンのボックスパーツ
+// ====================================
+// display:flex,justify-content:center,text-align:centerでボタン内テキストを左右上下中央配置
+@mixin btn($width, $hight) {
+    width: $width;
+    height: $hight;
+    border-radius: 8px;
+    background-color: #4C566A;
+}
+
+// ====================================
+// ボタンのリンク、文字
+// ====================================
+@mixin btn-a($fontSize) {
+    display: block;
+    height: 100%;
+    color: #ECEFF4;
+    font-size: $fontSize;
+    font-weight: bold;
+    text-align: center;
+}
+
+// ====================================
+// ボタンの矢印パーツ 横棒
+// ====================================
+@mixin arrow-before($width, $height, $color) {
+    position: absolute;
+    content: '';
+    top: 50%;
+    right: 5.5%;
+    width: $width;
+    height: $height;
+    background: $color;
+}
+
+// ====================================
+// ボタンの矢印パーツ カッコ
+// ====================================
+@mixin arrow-after($width, $height, $line-width, $color) {
+    position: absolute;
+    content: '';
+    top: 42%;
+    right: 6%;
+    width: $width;
+    height: $height;
+    border-top: $line-width solid $color;
+    border-right: $line-width solid $color;
+    transform: rotate(45deg);
+}
+
+// ====================================
+// 波型セクション区切り
+// ====================================
+@mixin wave-bg($height, $bottom) {
+    position: absolute;
+    width: 100%;
+    height: $height;
+    bottom: $bottom; //mainvisualのコンテンツの高さに合わせる
+    left: 0;
+    z-index: -1;
+}
+
+// ====================================
+// メディアクエリ
+// ====================================
+@mixin mq($size: md) {
+    @media #{ map-get( var.$breakpoint, $size ) } {
+        @content;
+    }
+}

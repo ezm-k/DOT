@@ -1,0 +1,194 @@
+@use '../global/variables'as var;
+@use '../global/mixin'as mix;
+
+
+#function {
+    position: relative;
+    margin: 242px 0 116px; //波型SVGの分の高さを余白にする。
+    background: var.$bgColor_black;
+    color: var.$color_sub;
+
+    @include mix.mq('xl') {
+        margin: 208px 0 88px;
+    }
+
+    @include mix.mq('lg') {
+        margin: 140px 0 72px;
+    }
+
+    @include mix.mq('md') {
+        margin: 124px 0 56px;
+    }
+
+    @include mix.mq('xs') {
+        margin: 64px 0 27.75px;
+        padding: 40px 0 67.8px;
+    }
+
+    .function-inner {
+        padding: 80px 0 60px;
+
+        @include mix.mq('xs') {
+            padding: 48px 0 0;
+        }
+
+        &-document,
+        &-share,
+        &-tag {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 64px;
+
+            @include mix.mq('md') {
+                flex-direction: column;
+            }
+
+            @include mix.mq('xs') {
+                margin-bottom: 40px;
+            }
+
+            &-img {
+                width: 55%;
+
+                @include mix.mq('md') {
+                    width: 100%;
+                    margin-bottom: 16px;
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            &-text {
+                width: 45%;
+                padding: 24px 32px 0 54px;
+
+                @include mix.mq('xl') {
+                    padding: 16px 32px 0 54px;
+                }
+
+                @include mix.mq('md') {
+                    width: 100%;
+                    padding: 0;
+
+                    .sub-title {
+                        margin-bottom: 8px;
+                    }
+
+                    &-summary {
+                        font-size: 1rem;
+                    }
+                }
+
+                @include mix.mq('xs') {
+                    &-summary {
+                        font-size: 0.875rem;
+                    }
+                }
+            }
+        }
+
+        //真中のコンテンツはテキストと画像を反対にして、テキスト周りの余白を調節。
+        &-share {
+            flex-direction: row-reverse;
+
+            @include mix.mq('md') {
+                flex-direction: column;
+            }
+
+            &-text {
+                padding: 24px 134px 0 0;
+
+                @include mix.mq('xl') {
+                    padding: 16px 54px 0 0;
+                }
+
+                @include mix.mq('md') {
+                    padding: 0;
+                }
+            }
+        }
+
+        @include mix.mq('md') {
+            &-tag {
+                margin-bottom: 0;
+            }
+        }
+
+        /*=======================================
+        アニメーションのための設定
+        =========================================*/
+        //初期状態は非表示
+        .animeElem {
+            opacity: 0;
+        }
+
+        //要素をふわっと表示させるアニメーション設定
+        .fadeUp {
+            animation: fadeUpAnime forwards ease-out 0.5s 1 0s;
+        }
+
+        @keyframes fadeUpAnime {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    /*=======================================
+    波型セクション区切りの設定
+    =========================================*/
+    //上の波型のセクション区切り
+    #wave-bg-function-top {
+        @include mix.wave-bg (242px, auto);
+        top: -242px;
+
+        @include mix.mq('xl') {
+            @include mix.wave-bg (208px, auto);
+            top: -208px;
+        }
+
+        @include mix.mq('lg') {
+            @include mix.wave-bg (140px, auto);
+            top: -140px;
+        }
+
+        @include mix.mq('md') {
+            @include mix.wave-bg (124px, auto);
+            top: -124px;
+        }
+
+        @include mix.mq('xs') {
+            @include mix.wave-bg (64px, auto);
+            top: -64px;
+        }
+    }
+
+    //下の波型のセクション区切り
+    #wave-bg-function-bottom {
+        @include mix.wave-bg (116px, -116px);
+
+        @include mix.mq('xl') {
+            @include mix.wave-bg (88px, -88px);
+        }
+
+        @include mix.mq('lg') {
+            @include mix.wave-bg (72px, -72px);
+        }
+
+        @include mix.mq('md') {
+            @include mix.wave-bg (56px, -56px);
+        }
+
+        @include mix.mq('xs') {
+            @include mix.wave-bg (27.75px, -27.75px);
+        }
+    }
+}
